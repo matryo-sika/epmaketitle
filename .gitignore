@@ -276,4 +276,4 @@ TSWLatexianTemp*
 *.lpz
 
 # User Add
-others/
+./others/*
