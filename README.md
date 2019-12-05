@@ -1,6 +1,6 @@
 # EPmaketitle package
 
-日本語LaTeXで卒論・修論等を執筆する際に，表紙を作成するためのパッケージです．タイトル・著者・日付のほかに，所属や指導教員などを表紙に加えることができます．
+日本語 LaTeX で卒論・修論等を執筆する際に，表紙を作成するためのパッケージです．タイトル・著者・日付のほかに，所属や指導教員などを表紙に加えることができます．
 
 ## 使い方
 
@@ -48,3 +48,12 @@ EPmaketitle では，各記載情報の配置（相対位置）は固定され�
 \renewcommand{\epmkdeco}{}
 ```
 と再定義してください．
+
+## ライセンス LICENSE
+本パッケージは クリエイティブコモンズ 表示 4.0・国際 （CC-BY 4.0）の下で配布を行う．
+
+This work is licensed under a Creative Commons Attribution 4.0 International License.
+
+## 参考にしたもの
+- 奥村晴彦氏の pLaTeX2e 新ドキュメントクラス中の jsarticle.cls
+- Norman Gray 氏の textpos package
