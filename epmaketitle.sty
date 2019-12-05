@@ -16,12 +16,12 @@
 \def\title#1{\gdef\@title{#1}}
 \def\author#1{\gdef\@author{#1}}
 \def\date#1{\gdef\@date{#1}}
-\def\titleEN#1{\gdef\@titleEN{#1}}				% Title (English)
-\def\authorEN#1{\gdef\@authorEN{#1}} 		% Author (English)
-\def\faculty#1{\gdef\@faculty{#1}}				% Faculty
-\def\facultyEN#1{\gdef\@facultyEN{#1}}		% Faculty (English)
-\def\advisor#1{\gdef\@advisor{#1}}				% Advisor
-\def\studentid#1{\gdef\@studentid{#1}}  	% Student ID
+\def\titleEN#1{\gdef\@titleEN{#1}}
+\def\authorEN#1{\gdef\@authorEN{#1}}
+\def\faculty#1{\gdef\@faculty{#1}}
+\def\facultyEN#1{\gdef\@facultyEN{#1}}
+\def\advisor#1{\gdef\@advisor{#1}}
+\def\studentid#1{\gdef\@studentid{#1}}
 
 % Initialization
 \author{}
@@ -69,25 +69,13 @@
 		% Faculty & Advisor Parts
 		\begin{textblock*}{0.8\linewidth}[0.5,0.5](0.5\paperwidth,\facultycenterline)%
 			\newcount\paracntr
-			\paracntr=0
-			\ifx\@faculty\empty\else
-				\advance\paracntr by 1
-			\fi
-			\ifx\@facultyEN\empty\else
-				\advance\paracntr by 2
-			\fi
-			\ifx\@advisor\empty\else
-				\advance\paracntr by 4
-			\fi
 			\ifx\@faculty\empty
 				\ifx\@facultyEN\empty
 					\def\facswitch\empty
 				\fi
 			\fi
-			\ifnum\paracntr>4
-				{\huge \epmktdeco}
-				\vskip 0.01\paperheight
-			\fi
+			{\huge \epmktdeco}
+			\vskip 0.01\paperheight
 			\ifx\@faculty\empty\else
 				{\LARGE \@faculty}\leavevmode\\
 			\fi
@@ -100,15 +88,15 @@
 			\if\@advisor\empty\else
 				{\LARGE 指導教員：\@advisor}
 			\fi
-			\ifnum\paracntr>4
-				\vskip 0.01\paperheight
-				{\huge \epmktdeco}
-			\fi
+			\vskip 0.01\paperheight
+			{\huge \epmktdeco}
 		\end{textblock*}\par
 		
 		% Date Part
 		\begin{textblock*}{0.6\linewidth}[0.5,1.0](0.5\paperwidth,\datecenterline)%
-			{\LARGE \@date}%
+			\if\@date\empty\else
+				{\LARGE \@date}%
+			\fi
 		\end{textblock*}\par
 	\end{center}%
 }
