@@ -1,10 +1,10 @@
 % epmaketitle.sty
 % Author: Matsuoka Ryo
 % Release: 2019/12/05
-% Last modified: 2019/12/05
+% Last modified: 2019/12/06
 
 \usepackage[absolute,overlay]{textpos}
-\usepackage{ifthen}
+\usepackage{adjustbox}
 
 % Range Parameter & Decoration
 \newcommand{\titlecenterline}{0.25\paperheight}
@@ -12,10 +12,13 @@
 \newcommand{\studentidtopline}{0.55\paperheight}
 \newcommand{\facultycenterline}{0.75\paperheight}
 \newcommand{\datecenterline}{0.92\paperheight}
-\newcommand{\epmktdeco}{$\ast\ast\ast\ast\ast$}
+\newcommand{\epmktdeco}{\adjustbox{raise=2pt}{\textasteriskcentered\ \textasteriskcentered\ \textasteriskcentered\ \textasteriskcentered\ \textasteriskcentered}}
+
+\newcommand{\epmktdecotop}{\ \\\epmktdeco}
+\newcommand{\epmktdecobot}{\epmktdeco\\\ }
+% 何らかの空白を上下に入れないと改行が不ぞろいになる
 
 \textblockorigin{0mm}{0mm} % Origin of the textblock in the paper
-
 
 \def\title#1{\gdef\@title{#1}}
 \def\author#1{\gdef\@author{#1}}
@@ -62,7 +65,7 @@
 				{\LARGE \@authorEN}
 			}\fi
 		\end{textblock*}\par
-
+		
 		% Student ID Part
 		\begin{textblock*}{\linewidth}[0.5,0.0](0.5\paperwidth,\studentidtopline)%
 			\ifx\@studentid\empty\else
@@ -72,28 +75,30 @@
 		
 		% Faculty & Advisor Parts
 		\begin{textblock*}{0.8\linewidth}[0.5,0.5](0.5\paperwidth,\facultycenterline)%
-			\newcount\paracntr
+			
+			% faculty, facultyEN, advisor が宣言されていないとき，飾り文字を入れない
 			\ifx\@faculty\empty
 				\ifx\@facultyEN\empty
-					\def\facswitch\empty
+					\ifx\@advisor\empty
+						\def\nodeco\empty
+					\fi
 				\fi
 			\fi
-			{\huge \epmktdeco}
-			\vskip 0.01\paperheight
+			\ifx\nodeco\undefined
+				{\huge \epmktdecotop\leavevmode\\}
+			\fi
 			\ifx\@faculty\empty\else
-				{\LARGE \@faculty}\leavevmode\\
+				{\LARGE \@faculty\leavevmode\\[3mm]}
 			\fi
 			\ifx\@facultyEN\empty\else
-				{\LARGE \@facultyEN}
+				{\LARGE \@facultyEN\leavevmode\\[3mm]}
 			\fi
-			\ifx\facswitch\undefined
-				\vskip 0.01\paperheight
+			\ifx\@advisor\empty\else
+				{\LARGE 指導教員：\@advisor\leavevmode\\}
 			\fi
-			\if\@advisor\empty\else
-				{\LARGE 指導教員：\@advisor}
+			\ifx\nodeco\undefined
+				{\huge \epmktdecobot}
 			\fi
-			\vskip 0.01\paperheight
-			{\huge \epmktdeco}
 		\end{textblock*}\par
 		
 		% Date Part
@@ -102,6 +107,7 @@
 				{\LARGE \@date}%
 			\fi
 		\end{textblock*}\par
+		
 	\end{center}%
 }
 
