@@ -1,4 +1,7 @@
 \documentclass[a4paper,uplatex,dvipdfmx]{jsarticle}
+%documentclassで規定外のfontsizeにすると表紙が崩れるので注意
+%本文を{\large 本文}的な感じで囲むのが現状の策 (2021/01/26)
+
 \usepackage{epmaketitle}
 
 
@@ -13,7 +16,7 @@
 \date{2019/12/06}
 
 \faculty{
-	インブリウム大学大学院 理学院\\
+	インブリウム大学 大学院理学院\\
 	地球宇宙科学専攻 惑星科学グループ
 }
 \facultyEN{
@@ -31,5 +34,4 @@
 \thispagestyle{empty}
 \epmaketitle
 \end{titlepage}
-
 \end{document}
